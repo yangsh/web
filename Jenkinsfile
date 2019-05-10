@@ -14,7 +14,6 @@ pipeline {
 
         stage('create docker image') {
             steps {
-                echo ">>> container clean ..."
                 sh "docker kill $(docker ps -a | grep web | awk '{print $1}')"
                 sh "docker rm $(docker ps -a | grep web | awk '{print $1}')"
                 sh "docker rmi $(docker images -a | grep web | awk '{print $3}')"
