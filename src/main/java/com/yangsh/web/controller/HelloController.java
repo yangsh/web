@@ -14,7 +14,7 @@ public class HelloController {
 
     @RequestMapping("/hello")
     public String hello() {
-        return "Hello XXX YYY ZZZ";
+        return "Hello XXX YYY ZZZ PPP";
     }
 
 }
