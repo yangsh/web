@@ -11,5 +11,10 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
+        stage('create docker image') {
+            steps {
+                sh "docker build -t web:${env.BUILD_NUMBER} ."
+            }
+        }
     }
 }
