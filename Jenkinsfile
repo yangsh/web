@@ -14,16 +14,15 @@ pipeline {
 
         stage('create docker image') {
             steps {
-                sh "docker stop $(docker ps -a | grep web | awk '{print $1}')"
-                sh "docker rm $(docker ps -a | grep web | awk '{print $1}')"
-                sh "docker rmi $(docker images -a | grep web | awk '{print $3}')"
+                sh 'docker stop web'
+                sh 'docker rm web'
                 sh "docker build -t web:${env.BUILD_NUMBER} ."
             }
         }
 
         stage('start container') {
             steps {
-                sh "docker run -d -p 8181:8181 web:${env.BUILD_NUMBER}"
+                sh "docker run -d -p 8181:8181 --name web web:${env.BUILD_NUMBER}"
             }
         }
     }
