@@ -14,7 +14,7 @@ pipeline {
 
         stage('create docker image') {
             steps {
-                sh 'docker stop web'
+                sh 'sh /var/jenkins_home/workspace/web/stop.sh'
                 sh 'docker rm web'
                 sh "docker build -t web:${env.BUILD_NUMBER} ."
             }
