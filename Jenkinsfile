@@ -14,7 +14,7 @@ pipeline {
 
         stage('create docker image') {
             steps {
-                sh "docker kill $(docker ps -a | grep web | awk '{print $1}')"
+                sh "docker stop $(docker ps -a | grep web | awk '{print $1}')"
                 sh "docker rm $(docker ps -a | grep web | awk '{print $1}')"
                 sh "docker rmi $(docker images -a | grep web | awk '{print $3}')"
                 sh "docker build -t web:${env.BUILD_NUMBER} ."
