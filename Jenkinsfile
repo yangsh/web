@@ -51,7 +51,7 @@ pipeline {
                     jdk: '',
                     properties: [],
                     reportBuildPolicy: 'ALWAYS',
-                    results: [['target/allure-results']]
+                    results: [[path: 'target/allure-results']]
                 ])
             }
             cleanWs()
