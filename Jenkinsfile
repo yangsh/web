@@ -5,6 +5,10 @@ pipeline {
         maven 'mvn-3.6.1'
     }
 
+    options {
+        bulidDiscarder(logRotator(numToKeepStr: '5'))
+    }
+
     stages {
         stage('build') {
             steps {
@@ -13,7 +17,7 @@ pipeline {
                     execPattern: 'target/**/*.exec',
                     classPattern: 'target/classes',
                     sourcePattern: 'src/main/java',
-                    exclusionPattern: 'src/test*, target/classes/**/Application.class',
+                    exclusionPattern: 'src/test*, src/**/Application*',
                     skipCopyOfSrcFiles: false,
                     changeBuildStatus: false,
                     minimumLineCoverage: '30', maximumLineCoverage: '70',
@@ -41,6 +45,10 @@ pipeline {
     post {
         always {
             step([$class: 'Publisher', reportFilenamePattern: '**/testng-results.xml'])
+        }
+
+        always {
+            cleanWs()
         }
     }
 }
