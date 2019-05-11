@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Description: TODO
+ * Description: 应用启动类
  * <p></p>
  * Author: shaoye
  * Date: 2019-05-10 19:50
