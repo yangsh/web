@@ -49,13 +49,13 @@ pipeline {
         }
 
         script {
-            allure{[
+            allure([
                 includeProperties: false,
                 jdk: '',
                 properties: [],
                 reportBuildPolicy: 'ALWAYS',
                 results: [['target/allure-results']]
-            ]}
+            ])
         }
     }
 }
