@@ -1,4 +1,4 @@
-package com.yangsh.controller;
+package com.yangsh.web.controller;
 
 import com.yangsh.web.Application;
 import org.springframework.boot.test.context.SpringBootTest;
