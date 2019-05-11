@@ -47,5 +47,15 @@ pipeline {
             step([$class: 'Publisher', reportFilenamePattern: '**/testng-results.xml'])
             cleanWs()
         }
+
+        script {
+            allure{[
+                includeProperties: false,
+                jdk: '',
+                properties: [],
+                reportBuildPolicy: 'ALWAYS',
+                results: [['target/allure-results']]
+            ]}
+        }
     }
 }
