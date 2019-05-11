@@ -16,7 +16,9 @@ pipeline {
                 jacoco(
                     execPattern: 'target/**/*.exec',
                     classPattern: 'target/classes/**/controller',
-                    sourcePattern: 'src/main/java/**/controller',
+                    sourcePattern: 'src/main/java',
+                    sourceExclusionPattern: 'src/main/java',
+                    sourceInclusionPattern: 'src/main/java/**/controller',
                     exclusionPattern: 'src/test*',
                     skipCopyOfSrcFiles: false,
                     changeBuildStatus: false,
