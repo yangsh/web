@@ -15,10 +15,8 @@ pipeline {
                 sh 'mvn clean package'
                 jacoco(
                     execPattern: 'target/**/*.exec',
-                    classPattern: 'target/classes',
-                    sourcePattern: 'src/main/java',
-                    sourceInclusionPattern: 'src/main/java/com/yangsh/web/controller/*.java',
-                    sourceExclusionPattern: 'src/main/java/com/yangsh/web/Application.java',
+                    classPattern: 'target/classes/java/com/yangsh/web/controller',
+                    sourcePattern: 'src/main/java/com/yangsh/web/controller',
                     exclusionPattern: 'src/test*',
                     skipCopyOfSrcFiles: false,
                     changeBuildStatus: false,
