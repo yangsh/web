@@ -5,6 +5,7 @@
     <test name="MyTest">
         <packages>
             <package name="com.yangsh.web.controller" />
+            <package name="com.yangsh.web.service" />
         </packages>
     </test>
 
