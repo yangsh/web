@@ -9,6 +9,15 @@ pipeline {
         stage('build') {
             steps {
                 sh 'mvn clean package'
+                jacoco(
+                    execPattern: 'target/**/*.exec',
+                    classPattern: 'target/classes',
+                    sourcePattern: 'src/main/java',
+                    exclusionPattern: 'src/test*',
+                    skipCopyOfSecFiles: false,
+                    changeBuildStatus: true,
+                    minimumLineCoverage: '30', maximumLineCoverage: '70'
+                )
             }
         }
 
