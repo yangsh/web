@@ -15,8 +15,9 @@ pipeline {
                     sourcePattern: 'src/main/java',
                     exclusionPattern: 'src/test*',
                     skipCopyOfSrcFiles: false,
-                    changeBuildStatus: true,
-                    minimumLineCoverage: '30', maximumLineCoverage: '70'
+                    changeBuildStatus: false,
+                    minimumLineCoverage: '30', maximumLineCoverage: '70'，
+                    buildOverBuild: false
                 )
             }
         }
