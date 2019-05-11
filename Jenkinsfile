@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    triggers {
-        upstream(upstreamProjects: 'pipeline-mvn', threshold: hudson.model.Result.SUCCESS)
-    }
-
     tools {
         maven 'mvn-3.6.1'
     }
