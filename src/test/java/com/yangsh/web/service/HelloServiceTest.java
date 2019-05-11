@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 public class HelloServiceTest {
 
     @Test
-    public void hello() {
+    public void testHello() {
         HelloService service = new HelloService();
 
         Assert.assertEquals(service.hello(), "Hello");
