@@ -13,7 +13,7 @@ pipeline {
                     execPattern: 'target/**/*.exec',
                     classPattern: 'target/classes',
                     sourcePattern: 'src/main/java',
-                    exclusionPattern: 'src/test*',
+                    exclusionPattern: 'src/test*, src/main/java/**/Application.java',
                     skipCopyOfSrcFiles: false,
                     changeBuildStatus: false,
                     minimumLineCoverage: '30', maximumLineCoverage: '70',
