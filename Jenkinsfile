@@ -16,7 +16,7 @@ pipeline {
                     exclusionPattern: 'src/test*',
                     skipCopyOfSrcFiles: false,
                     changeBuildStatus: false,
-                    minimumLineCoverage: '30', maximumLineCoverage: '70'，
+                    minimumLineCoverage: '30', maximumLineCoverage: '70',
                     buildOverBuild: false
                 )
             }
