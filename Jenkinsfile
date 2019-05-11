@@ -6,7 +6,7 @@ pipeline {
     }
 
     options {
-        bulidDiscarder(logRotator(numToKeepStr: '5'))
+        buildDiscarder(logRotator(numToKeepStr: '5'))
     }
 
     stages {
