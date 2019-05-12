@@ -28,7 +28,7 @@ pipeline {
 
         stage('create docker image') {
             steps {
-                sh "sh /var/jenkins_home/workspace/${env.JOB_NAME}_${env.GIT_BRANCH}/stop.sh || true"
+                sh "sh ${env.WORKSPACE}/stop.sh || true"
                 sleep 5
                 sh "docker rm web_${env.GIT_BRANCH} || true"
                 sh "docker build -t web_${env.GIT_BRANCH}:${env.BUILD_NUMBER} ."
