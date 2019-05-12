@@ -36,24 +36,24 @@ pipeline {
         }
 
         stage('deploy to test') {
+            when {
+                branch 'test'
+            }
+
             steps {
-                script {
-                    if (env.GIT_BRANCH == 'test') {
-                        echo "deploy to test env"
-                        sh "docker run -d -p 8181:8181 --name web_${env.GIT_BRANCH} web_${env.GIT_BRANCH}:${env.BUILD_NUMBER}"
-                    }
-                }
+                echo "deploy to test env"
+                sh "docker run -d -p 8181:8181 --name web_${env.GIT_BRANCH} web_${env.GIT_BRANCH}:${env.BUILD_NUMBER}"
             }
         }
 
-        stage('deploy to master') {
+        stage('deploy to prod') {
+            when {
+                branch 'master'
+            }
+
             steps {
-                script {
-                    if (env.GIT_BRANCH == 'master') {
-                        echo "deploy to prod env"
-                        sh "docker run -d -p 8181:8181 --name web web:${env.BUILD_NUMBER}"
-                    }
-                }
+                echo "deploy to prod env"
+                sh "docker run -d -p 8182:8181 --name web_${env.GIT_BRANCH} web_${env.GIT_BRANCH}:${env.BUILD_NUMBER}"
             }
         }
 
