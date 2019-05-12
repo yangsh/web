@@ -28,16 +28,10 @@ pipeline {
 
         stage('create docker image') {
             steps {
-                sh 'sh /var/jenkins_home/workspace/web/stop.sh'
+                sh "sh /var/jenkins_home/workspace/${env.JOB_NAME}_${env.GIT_BRANCH}/stop.sh || true"
                 sleep 5
-                sh 'docker rm web'
-                sh "docker build -t web:${env.BUILD_NUMBER} ."
-            }
-        }
-
-        stage('start container') {
-            steps {
-                sh "docker run -d -p 8181:8181 --name web web:${env.BUILD_NUMBER}"
+                sh "docker rm web_${env.GIT_BRANCH} || true"
+                sh "docker build -t web_${env.GIT_BRANCH}:${env.BUILD_NUMBER} ."
             }
         }
 
@@ -46,6 +40,7 @@ pipeline {
                 script {
                     if (env.GIT_BRANCH == 'test') {
                         echo "deploy to test env"
+                        sh "docker run -d -p 8181:8181 --name web_${env.GIT_BRANCH} web_${env.GIT_BRANCH}:${env.BUILD_NUMBER}"
                     }
                 }
             }
@@ -55,7 +50,8 @@ pipeline {
             steps {
                 script {
                     if (env.GIT_BRANCH == 'master') {
-                        echo "deploy to master env"
+                        echo "deploy to prod env"
+                        sh "docker run -d -p 8181:8181 --name web web:${env.BUILD_NUMBER}"
                     }
                 }
             }
@@ -75,6 +71,7 @@ pipeline {
                     results: [[path: 'target/allure-results']]
                 ])
             }
+            cleanWs()
         }
     }
 }
