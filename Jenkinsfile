@@ -51,7 +51,7 @@ pipeline {
             }
         }
 
-        stage('deploy to test') {
+        stage('deploy to master') {
             steps {
                 script {
                     if (env.GIT_BRANCH == 'master') {
