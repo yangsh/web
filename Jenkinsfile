@@ -40,6 +40,27 @@ pipeline {
                 sh "docker run -d -p 8181:8181 --name web web:${env.BUILD_NUMBER}"
             }
         }
+
+        stage('deploy to test') {
+            steps {
+                script {
+                    if (env.GIT_BRANCH == 'test') {
+                        echo "deploy to test env"
+                    }
+                }
+            }
+        }
+
+        stage('deploy to test') {
+            steps {
+                script {
+                    if (env.GIT_BRANCH == 'master') {
+                        echo "deploy to master env"
+                    }
+                }
+            }
+        }
+
     }
 
     post {
